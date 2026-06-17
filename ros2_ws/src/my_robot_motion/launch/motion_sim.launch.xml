@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load the robot URDF using robot_state_publisher from my_robot_description -->
+  <let name="urdf_file" value="$(find-pkg-share my_robot_description)/urdf/my_robot.urdf" />
+
+  <node pkg="robot_state_publisher" exec="robot_state_publisher" name="robot_state_publisher">
+    <param name="robot_description" value="$(file-content $(var urdf_file))" type="str" />
+  </node>
+
+  <!-- Launch the custom python motion generator node -->
+  <node pkg="my_robot_motion" exec="motion_generator" name="motion_generator" />
+
+  <!-- Launch rviz2 with the configuration file from my_robot_description -->
+  <node pkg="rviz2" exec="rviz2" name="rviz2" args="-d $(find-pkg-share my_robot_description)/config/config.rviz" />
+</launch>

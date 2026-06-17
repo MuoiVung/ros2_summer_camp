@@ -1,0 +1,18 @@
+# ROS 2 Build Artifacts
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+
+# Python cache
+**/__pycache__/
+*.pyc
+
+# IDE settings
+.vscode/
+.idea/
+.gemini/
+.system_generated/
+
+# OS specific files
+.DS_Store
+Thumbs.db

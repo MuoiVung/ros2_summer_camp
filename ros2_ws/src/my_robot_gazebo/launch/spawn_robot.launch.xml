@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Force use of simulation time -->
+  <param name="use_sim_time" value="true" />
+
+  <!-- Generate URDF from Xacro -->
+  <let name="urdf_xacro" value="$(find-pkg-share my_robot_moveit_config)/config/my_robot.urdf.xacro" />
+
+  <!-- Start robot_state_publisher -->
+  <node pkg="robot_state_publisher" exec="robot_state_publisher" name="robot_state_publisher">
+    <param name="robot_description" value="$(command 'xacro $(var urdf_xacro)')" type="str" />
+  </node>
+
+  <!-- Spawn Robot in Gazebo Sim -->
+  <node pkg="ros_gz_sim" exec="create" name="robot_spawner"
+        args="-topic robot_description -name my_robot -z 0.05" />
+
+  <!-- Spawn Joint State Broadcaster -->
+  <node pkg="controller_manager" exec="spawner" name="joint_state_broadcaster_spawner"
+        args="joint_state_broadcaster" />
+
+  <!-- Spawn Arm Controller -->
+  <node pkg="controller_manager" exec="spawner" name="arm_controller_spawner"
+        args="arm_controller" />
+
+  <!-- Spawn Gripper Controller -->
+  <node pkg="controller_manager" exec="spawner" name="gripper_controller_spawner"
+        args="gripper_controller" />
+</launch>
