@@ -1,5 +1,6 @@
 controller_manager:
   ros__parameters:
+    use_sim_time: true
     update_rate: 100  # Hz
 
     arm_controller:
@@ -13,6 +14,7 @@ controller_manager:
 
 arm_controller:
   ros__parameters:
+    use_sim_time: true
     joints:
       - joint_1
       - joint_2
@@ -28,6 +30,7 @@ arm_controller:
 
 gripper_controller:
   ros__parameters:
+    use_sim_time: true
     joints:
       - left_finger_joint
       - right_finger_joint

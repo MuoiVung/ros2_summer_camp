@@ -1,5 +1,5 @@
 Panels:
-  - Class: rviz_common::DisplaysPanel
+  - Class: rviz_common/Displays
     Help Height: 78
     Name: Displays
     Property Grid State:
@@ -14,7 +14,7 @@ Visualization Manager:
   Displays:
     - Alpha: 0.5
       Cell Size: 1
-      Class: rviz_default_plugins::Grid
+      Class: rviz_default_plugins/Grid
       Color: 160; 160; 164
       Enabled: true
       Name: Grid
@@ -22,7 +22,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Class: moveit_ros_visualization::MotionPlanning
+    - Class: moveit_rviz_plugin/MotionPlanning
       Enabled: true
       Name: MotionPlanning
       Robot Description: robot_description
@@ -33,3 +33,16 @@ Visualization Manager:
     Fixed Frame: world
     Frame Rate: 30
   Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: Current View
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+    Saved: ~

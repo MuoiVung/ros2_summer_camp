@@ -4,7 +4,7 @@ from launch.actions import IncludeLaunchDescription, TimerAction
 from launch.launch_description_sources import AnyLaunchDescriptionSource
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
-from moveit_configs_builder import MoveItConfigsBuilder
+from moveit_configs_utils import MoveItConfigsBuilder
 
 def generate_launch_description():
     gazebo_pkg = get_package_share_directory('my_robot_gazebo')
@@ -32,7 +32,7 @@ def generate_launch_description():
     # MoveIt Config with use_sim_time=True
     moveit_config = (
         MoveItConfigsBuilder("my_robot", package_name="my_robot_moveit_config")
-        .robot_description(file_path="urdf/my_robot.urdf", package_name="my_robot_description")
+        .robot_description(file_path="config/my_robot.urdf.xacro")
         .robot_description_semantic(file_path="config/my_robot.srdf")
         .trajectory_execution(file_path="config/moveit_controllers.yaml")
         .planning_pipelines(pipelines=["ompl"])
@@ -41,6 +41,7 @@ def generate_launch_description():
 
     moveit_params = moveit_config.to_dict()
     moveit_params['use_sim_time'] = True
+    moveit_params['start_state_max_bounds_error'] = 0.5
 
     # Start MoveGroup
     run_move_group_node = Node(

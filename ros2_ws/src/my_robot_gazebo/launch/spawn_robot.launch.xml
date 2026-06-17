@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <!-- Force use of simulation time -->
-  <param name="use_sim_time" value="true" />
+  <set_parameter name="use_sim_time" value="true" />
 
   <!-- Generate URDF from Xacro -->
   <let name="urdf_xacro" value="$(find-pkg-share my_robot_moveit_config)/config/my_robot.urdf.xacro" />
